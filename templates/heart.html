@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>HEART API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+	<h1>Heart Prediction</h1>
+    <br>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('heart_page')}}"method="POST">
+      
+        <input type="text" name="age" placeholder="Enter Age" required="required"/>
+        
+        <label for="sex">Sex</label>
+        <select id="sex" name="sex">
+          <option selected>----select option----</option>
+          <option value="1">Male</option>
+          <option value="0">Female</option>
+        </select>
+        <br>
+
+        <!--<input type="text" name="sex" placeholder="Enter Gender(M:1,F:0)" required="required" /> -->
+        <!-- <input type="radio" name="sex" required="required">
+        <label for="Male">Male</label>
+        <input type="radio" name="sex" required="required">
+        <label for="Female">Female</label> -->
+        <br>
+		    <input type="text" name="cp" placeholder="Chest Pain Type(1-4)" required="required" />
+        <input type="text" name="trestbps" placeholder="Resting Blood Pressure" required="required" />
+        <br>
+        <input type="text" name="chol" placeholder="Serum Cholestoral in mg/dl" required="required" />
+        <input type="text" name="fbs" placeholder="Fasting Blood Sugar" required="required" />
+        <br>
+        <input type="text" name="restecg" placeholder="Resting Electrocardiographic Results" required="required">
+        <input type="text" name="thalach" placeholder="Maximum Heart Rate" required="required">
+        <br>
+        <input type="text" name="exang" placeholder="Exercise Induced Angina (1:Yes, 0:N0)" required="required">
+        <input type="text" name="oldpeak" placeholder="ST depression induced by exercise relative to rest" required="required">
+        <br>
+        <input type="text" name="slope" placeholder="Enter slope of the peak exercise ST segment" required="required">
+        <input type="text" name="ca" placeholder="Number of Major vessels (0 - 3)" required="required">
+        <br>
+        <input type="text" name="thal" placeholder="(0,1,2)" required="required">
+
+        <button type="submit">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}<br>
+<a href="/">GO BACK</a>
+  <br>
+
+</body>
+</html>
