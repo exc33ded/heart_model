@@ -1,6 +1,5 @@
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
-from gevent.pywsgi import WSGIServer
 import pickle
 import numpy as np
 
