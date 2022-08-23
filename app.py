@@ -11,7 +11,7 @@ app = Flask(__name__)
 def front_page():
     return render_template('heart.html')
 
-model_heart = pickle.load(open(r'F:\Projects\Heart\final_model.pkl', 'rb'))
+model_heart = pickle.load(open('final_model.pkl', 'rb'))
 @app.route('/heart',methods=['POST','GET'])
 def heart_page():
     if request.method == 'GET':
