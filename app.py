@@ -1,5 +1,5 @@
 # Importing essential libraries
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,jsonify
 import pickle
 import numpy as np
 
@@ -40,6 +40,43 @@ def Heart_predict():
         
         return render_template('result.html', prediction=my_prediction)
         
-        
+'''For Postman'''
+@app.route("/predict",methods=['POST'])
+def predict():
+    age = request.form['age']
+    sex = request.form['sex']
+    cp = request.form['cp'] 
+    tresrbps = request.form['tresrbps']
+    chol = request.form['chol']
+    fbs = request.form['fbs'] 
+    restecg = request.form['restecg'] 
+    thalach = request.form['thalach']
+    exang = request.form['exang'] 
+    oldpeak = request.form['oldpeak'] 
+    slope = request.form['slope'] 
+    ca = request.form['ca'] 
+    thal= request.form['thal']
+    input_data = (age, sex, cp, tresrbps, chol, fbs, restecg, thalach,exang, oldpeak, slope, ca, thal)
+    input_data_as_numpy_array= np.asarray(input_data)
+    input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+    prediction = int(model_heart.predict(input_data_reshaped)[0])
+    data=  {
+        'age': age,
+        'sex': sex,
+        'cp': cp,
+        'tresrbps': tresrbps,
+        'chol': chol,
+        'fbs':fbs,
+        'restecg': restecg,
+        'thalach': thalach,
+        'exang': exang,
+        'oldpeak':oldpeak,
+        'slope': slope,
+        'ca': ca,
+        'thal': thal,
+        'prediction': prediction
+    }
+    return jsonify(data) 
+
 if __name__ == '__main__':
 	app.run(debug=True)
